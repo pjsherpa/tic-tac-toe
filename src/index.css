@@ -18,4 +18,10 @@ button {
 
 .clicked{
   font-size: 200%;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
+
+.gameOn{
+  font-family: fantasy;
+  font-weight: bolder;
+  }

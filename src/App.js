@@ -23,14 +23,14 @@ export default function App() {
       if (id === item.id) {
         item.value = board;
       }
+      setBoard(board === playerX ? playerO : playerX);
     });
-    setBoard(board === playerX ? playerO : playerX);
     // setDisabled(true);
   };
 
   return (
     <div className="App">
-      <h1>tic tac toe</h1>
+      <h1 className="gameOn">Tic-Tac-Toe</h1>
       <div className="grid">
         {position.map((item) => (
           <button
