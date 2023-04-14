@@ -7,12 +7,12 @@ button {
   background-color: white;
   color: #000000;
   border: solid black;
-  padding: 140px;
   text-align: center;
+  height:200px
 }
 
 .grid{
-  display: grid;
+  display:grid;
   grid-template-columns: auto auto auto;
 }
 
