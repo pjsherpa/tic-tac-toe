@@ -15,3 +15,7 @@ button {
   display: grid;
   grid-template-columns: auto auto auto;
 }
+
+.clicked{
+  font-size: 200%;
+}

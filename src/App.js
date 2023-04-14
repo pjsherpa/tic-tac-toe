@@ -4,7 +4,8 @@ import "./index.css";
 export default function App() {
   const [playerX, setPlayerX] = useState("X");
   const [playerO, setPlayerO] = useState("O");
-  const [board, setBoard] = useState(null);
+  const [isDisabled, setDisabled] = useState(false);
+  const [board, setBoard] = useState("");
   const [position, setPosition] = useState([
     { id: 1, value: board },
     { id: 2, value: board },
@@ -17,14 +18,14 @@ export default function App() {
     { id: 9, value: board },
   ]);
 
-  const handleClick = (id) => {
-    const updateBoard = position.map((item) => {
+  const startGame = (id) => {
+    position.map((item) => {
       if (id === item.id) {
         item.value = board;
       }
-      return item;
     });
     setBoard(board === playerX ? playerO : playerX);
+    // setDisabled(true);
   };
 
   return (
@@ -32,7 +33,11 @@ export default function App() {
       <h1>tic tac toe</h1>
       <div className="grid">
         {position.map((item) => (
-          <button className="clicked" onClick={() => handleClick(item.id)}>
+          <button
+            disabled={isDisabled}
+            className="clicked"
+            onClick={() => startGame(item.id)}
+          >
             {item.value}
           </button>
         ))}
