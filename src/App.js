@@ -2,35 +2,35 @@ import React, { useState } from "react";
 import "./index.css";
 
 export default function App() {
-  const [player, setPlayer] = useState(null);
+  const [playerX, setPlayerX] = useState("X");
+  const [playerO, setPlayerO] = useState("O");
+  const [board, setBoard] = useState(null);
 
-  const renderSqure = () => {
-    return <div>'X'</div>;
-  };
-
-  const handleClick = (buttonId) => {
-    setPlayer(buttonId);
+  const handleClick = () => {
+    setBoard(board === playerX ? playerO : playerX);
   };
 
   return (
     <div className="App">
       <h1>tic tac toe</h1>
       <div className="square">
-        <button className="clicked" onClick={() => handleClick(1)}>
-          {player}
+        <button className="clicked" onClick={() => handleClick()}>
+          {board}
         </button>
-        <button onClick={() => handleClick(2)}>{player}</button>
-        <button key={2}></button>
+        <button className="clicked" onClick={() => handleClick()}>
+          {board}
+        </button>
+        <button className="clicked"></button>
       </div>
       <div className="square">
-        <button key={3}></button>
-        <button key={4}></button>
-        <button key={5}></button>
+        <button className="clicked"></button>
+        <button className="clicked"></button>
+        <button className="clicked"></button>
       </div>
       <div className="square">
-        <button key={6}></button>
-        <button key={7}></button>
-        <button key={8}></button>
+        <button className="clicked"></button>
+        <button className="clicked"></button>
+        <button className="clicked"></button>
       </div>
     </div>
   );
