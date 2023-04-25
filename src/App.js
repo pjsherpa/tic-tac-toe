@@ -30,31 +30,32 @@ export default function App() {
   //Connect idx eg:1,2,3 from a different object within an array to create logic
   //winpoistion not being triggered
 
-  const winPosition = (a) => {
-    position.map((item) => {
-      const lines = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6],
-      ];
-      for (let i = 0; i < lines.length; i++) {
-        let [a, b, c] = lines[i];
-        if (
-          (a = item.value) &&
-          (a = item.value) === (b = item.value) &&
-          (a = item.value) === (c = item.value)
-        ) {
-          // return <h2>{`winning number ${item.value[a]}`}</h2>;
-          console.log("Winner", [a, b, c], [a]);
-        }
+  const winPosition = () => {
+    const lines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+
+    for (let index = 0; index < lines.length; index++) {
+      let [a, b, c] = lines[index];
+      if (
+        (button[a] = position[index].value) &&
+        (button[b] = position[index].value) === (button[a] = position.value) &&
+        (button[a] = position.value) === (button[c] = position.value)
+      ) {
+        // return <h2>{`winning number ${position.value[a]}`}</h2>;
+        console.log(
+          `index is ${index} and value is${position.value} and positionid is ${position.id}`
+        );
       }
-      return null;
-    });
+    }
+    return null;
   };
 
   return (
@@ -63,11 +64,62 @@ export default function App() {
       {/* {status} */}
       {winPosition()}
       <div className="grid">
-        {position.map((item) => (
-          <button className="clicked" onClick={() => startGame(item.id)}>
-            {item.value}
-          </button>
-        ))}
+        <button
+          key={position[1].id}
+          className="clicked"
+          onClick={() => startGame(position[1].id)}
+        >
+          {position[1].value}
+        </button>
+        <button
+          key={position[2].id}
+          className="clicked"
+          onClick={() => startGame(position[2].id)}
+        >
+          {position[2].value}
+        </button>
+        <button
+          key={position[3].id}
+          className="clicked"
+          onClick={() => startGame(position[3].id)}
+        >
+          {position[3].value}
+        </button>
+        <button
+          key={position[4].id}
+          className="clicked"
+          onClick={() => startGame(position[4].id)}
+        >
+          {position[4].value}
+        </button>
+        <button
+          key={position[5].id}
+          className="clicked"
+          onClick={() => startGame(position[5].id)}
+        >
+          {position[5].value}
+        </button>
+        <button
+          key={position[6].id}
+          className="clicked"
+          onClick={() => startGame(position[6].id)}
+        >
+          {position[6].value}
+        </button>
+        <button
+          key={position[7].id}
+          className="clicked"
+          onClick={() => startGame(position[7].id)}
+        >
+          {position[7].value}
+        </button>
+        <button
+          key={position[8].id}
+          className="clicked"
+          onClick={() => startGame(position[8].id)}
+        >
+          {position[8].value}
+        </button>
       </div>
     </div>
   );
