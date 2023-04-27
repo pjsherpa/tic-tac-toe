@@ -16,7 +16,8 @@ const lines = [
 export default function App() {
   const [board, setBoard] = useState("X");
   const [status, setStatus] = useState(`Start Game ${board}`);
-  const [isWinner, setIsWinner] = useState(false);
+  const [winner, setWinner] = useState("");
+
   // used to create 9 empty boxes that are buttons
   // initial values are empty
   // setposition updates values x or o, first val is 'x' and it will alternate
@@ -31,41 +32,45 @@ export default function App() {
     { id: 8, value: "" },
     { id: 9, value: "" },
   ]);
-  for (let i = 0; i < lines[0].length; i++) {
-    const [a, b, c] = lines[i];
-    console.log(position[a].value, position[b].value, position[c].value);
 
-    if (
-      position[a].value &&
-      position[a].value === position[b].value &&
-      position[a].value === position[c].value
-    ) {
-      setIsWinner(true);
-    }
-  }
   const startGame = (id) => {
-    const updatePosition = position.map((item, index) => {
+    const updatePosition = position.map((item) => {
       if (item.id === id && item.value === "") {
         item.value = board;
       }
 
       setBoard(board === "X" ? "O" : "X");
-      setStatus(`Next Player is ${board === "O" ? "X" : "O"}`~);
+      setStatus(`Next Player is ${board === "O" ? "X" : "O"}`);
+
       return item;
     });
     setPosition(updatePosition);
+
+    for (let i = 0; i < lines.length; i++) {
+      const [a, b, c] = lines[i];
+
+      if (
+        updatePosition[a].value &&
+        updatePosition[a].value === updatePosition[b].value &&
+        updatePosition[a].value === updatePosition[c].value
+      ) {
+        debugger;
+        setWinner(updatePosition[a].value);
+      }
+    }
   };
 
   return (
     <div className="App">
       <h1 className="gameOn">Tic-Tac-Toe</h1>
-      <h2>{status}</h2>
+      {winner ? <h2>Winner is {winner}</h2> : <h2>{status}</h2>}
       <div className="grid">
         {position.map((item, index) => (
           <button
             key={index}
             className="clicked"
             onClick={() => startGame(item.id)}
+            disabled={item.value || winner}
           >
             {item.value}
           </button>
