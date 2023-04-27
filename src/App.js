@@ -59,16 +59,39 @@ export default function App() {
       }
     }
   };
+  const startAgain = () => {
+    setBoard("X");
+    setWinner("");
+    setStatus(`Start Game X`);
+    setPosition([
+      { id: 1, value: "" },
+      { id: 2, value: "" },
+      { id: 3, value: "" },
+      { id: 4, value: "" },
+      { id: 5, value: "" },
+      { id: 6, value: "" },
+      { id: 7, value: "" },
+      { id: 8, value: "" },
+      { id: 9, value: "" },
+    ]);
+  };
 
   return (
     <div className="App">
       <h1 className="gameOn">Tic-Tac-Toe</h1>
-      {winner ? <h2>Winner is {winner}</h2> : <h2>{status}</h2>}
+      {winner ? (
+        <div>
+          <h2>Winner is {winner}</h2>{" "}
+          <button onClick={startAgain}>Restart Game</button>
+        </div>
+      ) : (
+        <h2>{status}</h2>
+      )}
       <div className="grid">
         {position.map((item, index) => (
           <button
             key={index}
-            className="clicked"
+            className="button clicked"
             onClick={() => startGame(item.id)}
             disabled={item.value || winner}
           >
