@@ -14,9 +14,9 @@ const lines = [
 ];
 
 export default function App() {
-  // const [status, setStatus] = useState('Who will win');
   const [board, setBoard] = useState("X");
-
+  const [status, setStatus] = useState(`Start Game ${board}`);
+  const [isWinner, setIsWinner] = useState(false);
   // used to create 9 empty boxes that are buttons
   // initial values are empty
   // setposition updates values x or o, first val is 'x' and it will alternate
@@ -34,18 +34,14 @@ export default function App() {
   for (let i = 0; i < lines[0].length; i++) {
     const [a, b, c] = lines[i];
     console.log(position[a].value, position[b].value, position[c].value);
+
     if (
       position[a].value &&
       position[a].value === position[b].value &&
-      position[b].value === position[c].values
+      position[a].value === position[c].value
     ) {
-      console.log("winner is", position[a].value);
-      setPosition("X");
+      setIsWinner(true);
     }
-    // console.log("hhhh", lines[0][i]);
-    // console.log(lines[0][i]);
-    // console.log(lines[0][i]);
-    // get value from position at line[0]
   }
   const startGame = (id) => {
     const updatePosition = position.map((item, index) => {
@@ -54,23 +50,16 @@ export default function App() {
       }
 
       setBoard(board === "X" ? "O" : "X");
+      setStatus(`Next Player is ${board === "O" ? "X" : "O"}`~);
       return item;
     });
     setPosition(updatePosition);
-
-    // for (let i = 0; i < lines.length; i++) {
-    //   //const [a, b, c] = [0, 1, 2];
-    //   console.log(lines[0][0]);
-    //   console.log(lines[0][1]);
-    //   console.log(lines[0][2]);
-    //   // get value from position at line[0]
-    // }
   };
 
   return (
     <div className="App">
       <h1 className="gameOn">Tic-Tac-Toe</h1>
-
+      <h2>{status}</h2>
       <div className="grid">
         {position.map((item, index) => (
           <button
